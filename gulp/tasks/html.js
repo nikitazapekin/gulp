@@ -5,12 +5,6 @@ export const html = () => {
     return app.gulp.src(app.path.src.html)
     .pipe(fileinclude())
     .pipe(gulpWebpHtmlNosvg())
- /* .pipe(app.plugins.plumber(
-        app.plugins.notify.onError({
-            title: "HTML",
-            message: "Error: <%= error.message $>"
-        })
-    )) */
     .pipe(versionNumber({
         'value': '%DT%',
         'append': {
@@ -27,4 +21,6 @@ export const html = () => {
         }
     }))
     .pipe(app.gulp.dest(app.path.build.html))
+   //.pipe(app.plugins.browsersync.stream())
+ 
 }
