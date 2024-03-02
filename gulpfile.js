@@ -10,15 +10,19 @@ global.app ={
 
 
 import { copy } from "./gulp/tasks/copy.js"
-
+import {reset} from "./gulp/tasks/reset.js"
+import { html } from "./gulp/tasks/html.js"
 function watcher() {
     gulp.watch(path.watch.files, copy)
+    gulp.watch(path.watch.html, html)
 }
+const mainTasks = gulp.parallel(copy, html, )
 
-
-const dev = gulp.series(copy, watcher)
+const dev = gulp.series(reset, mainTasks, watcher)
 gulp.task('default', dev)
 
 //npm i gulp-cli -g
 //npm i gulp -D
+//npm i -D del
 //gulp  - сборка
+// npm i -D gulp-file-include
